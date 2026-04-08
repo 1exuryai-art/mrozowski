@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="pl">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Заявка</title>
+  <title>Zgłoszenie</title>
   <style>
     * {
       box-sizing: border-box;
@@ -131,12 +131,6 @@
       resize: vertical;
     }
 
-    .hint {
-      margin-top: 6px;
-      font-size: 12px;
-      color: #6b6b6b;
-    }
-
     .consent-box {
       display: flex;
       align-items: flex-start;
@@ -248,8 +242,8 @@
 <body>
   <div class="page">
     <div class="hero">
-      <h1 class="title">Регистрация</h1>
-      <p class="subtitle">Заполните форму, чтобы оставить заявку</p>
+      <h1 class="title">Rejestracja</h1>
+      <p class="subtitle">Wypełnij formularz, aby wysłać zgłoszenie</p>
 
       <div class="progress-wrap">
         <div class="progress">
@@ -261,108 +255,102 @@
 
     <form id="applicationForm" novalidate>
       <div class="form-section">
-        <h2 class="section-title">Контактные данные</h2>
+        <h2 class="section-title">Dane kontaktowe</h2>
 
         <div class="field">
-          <label class="label" for="name">Ваше имя <span class="required">*</span></label>
+          <label class="label" for="name">Imię <span class="required">*</span></label>
           <input type="text" id="name" name="name" data-required="true" />
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
 
         <div class="field">
-          <label class="label" for="age">Ваш возраст <span class="required">*</span></label>
+          <label class="label" for="age">Wiek <span class="required">*</span></label>
           <input type="number" id="age" name="age" min="0" max="100" data-required="true" />
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
 
         <div class="field">
-          <label class="label" for="telegram">Username в Telegram <span class="required">*</span></label>
+          <label class="label" for="telegram">Username w Telegramie <span class="required">*</span></label>
           <input type="text" id="telegram" name="telegram" placeholder="@username" data-required="true" />
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
       </div>
 
       <div class="form-section">
-        <h2 class="section-title">Доходы</h2>
+        <h2 class="section-title">Dochody</h2>
 
         <div class="field">
-          <label class="label" for="incomeSource">На чем зарабатываешь сейчас? <span class="required">*</span></label>
+          <label class="label" for="incomeSource">Na czym teraz zarabiasz? <span class="required">*</span></label>
           <textarea id="incomeSource" name="incomeSource" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
 
         <div class="field">
-          <label class="label" for="monthlyIncome">Твой доход в месяц <span class="required">*</span></label>
-          <input type="text" id="monthlyIncome" name="monthlyIncome" placeholder="Например: 1000$" data-required="true" />
-          <div class="field-error">Заполните это поле</div>
+          <label class="label" for="monthlyIncome">Twój dochód miesięczny <span class="required">*</span></label>
+          <input type="text" id="monthlyIncome" name="monthlyIncome" placeholder="Na przykład: 1000$" data-required="true" />
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
       </div>
 
       <div class="form-section">
-        <h2 class="section-title">Запрос и цели</h2>
+        <h2 class="section-title">Sytuacja i cele</h2>
 
         <div class="field">
-          <label class="label" for="request">Какой запрос лично ко мне в рамках услуги? <span class="required">*</span></label>
-          <textarea id="request" name="request" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
-        </div>
-
-        <div class="field">
-          <label class="label" for="pain">Какая основная боль? <span class="required">*</span></label>
+          <label class="label" for="pain">Jaki jest Twój główny problem? <span class="required">*</span></label>
           <textarea id="pain" name="pain" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
 
         <div class="field">
-          <label class="label" for="expectedResult">Какой результат ты ожидаешь в итоге? <span class="required">*</span></label>
+          <label class="label" for="expectedResult">Jaki efekt chcesz osiągnąć? <span class="required">*</span></label>
           <textarea id="expectedResult" name="expectedResult" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
       </div>
 
       <div class="form-section">
-        <h2 class="section-title">Операционные вопросы</h2>
+        <h2 class="section-title">Praca z klientami</h2>
 
         <div class="field">
-          <label class="label" for="dailyQuestions">Какие вопросы тебе задают каждый день? <span class="required">*</span></label>
+          <label class="label" for="dailyQuestions">Jakie pytania klienci zadają Ci najczęściej? <span class="required">*</span></label>
           <textarea id="dailyQuestions" name="dailyQuestions" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
 
         <div class="field">
-          <label class="label" for="messagesPerDay">Сколько сообщений в день ты получаешь и сколько из них реально доводишь до записи? <span class="required">*</span></label>
+          <label class="label" for="messagesPerDay">Ile wiadomości dziennie otrzymujesz i ile z nich kończy się rezerwacją? <span class="required">*</span></label>
           <textarea id="messagesPerDay" name="messagesPerDay" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
 
         <div class="field">
-          <label class="label" for="dropMoment">В какой момент ты чаще всего не отвечаешь клиентам? <span class="required">*</span></label>
+          <label class="label" for="dropMoment">W którym momencie najczęściej nie odpowiadasz klientom? <span class="required">*</span></label>
           <textarea id="dropMoment" name="dropMoment" data-required="true"></textarea>
-          <div class="field-error">Заполните это поле</div>
+          <div class="field-error">Uzupełnij to pole</div>
         </div>
       </div>
 
       <div class="consent-box">
         <input type="checkbox" id="consent" />
         <label for="consent" class="consent-text">
-          Нажимая кнопку, вы соглашаетесь на обработку ваших данных для связи по вашей заявке.
+          Klikając przycisk, zgadzasz się na przetwarzanie swoich danych w celu kontaktu w sprawie Twojego zgłoszenia.
         </label>
       </div>
 
       <button type="submit" class="submit-btn" id="submitBtn" disabled>
-        Отправить заявку
+        Wyślij zgłoszenie
       </button>
 
       <div class="bottom-note">
-        Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.
+        Klikając przycisk, wyrażasz zgodę na przetwarzanie danych osobowych.
       </div>
 
       <div class="success-box" id="successBox">
-        Заявка успешно отправлена. Я свяжусь с вами в Telegram.
+        Zgłoszenie zostało wysłane. Skontaktuję się z Tobą na Telegramie.
       </div>
 
       <div class="error-box" id="errorBox">
-        Не удалось отправить заявку. Попробуйте ещё раз.
+        Nie udało się wysłać zgłoszenia. Spróbuj ponownie.
       </div>
     </form>
   </div>
@@ -428,7 +416,6 @@
         telegram: document.getElementById('telegram').value.trim(),
         incomeSource: document.getElementById('incomeSource').value.trim(),
         monthlyIncome: document.getElementById('monthlyIncome').value.trim(),
-        request: document.getElementById('request').value.trim(),
         pain: document.getElementById('pain').value.trim(),
         expectedResult: document.getElementById('expectedResult').value.trim(),
         dailyQuestions: document.getElementById('dailyQuestions').value.trim(),
@@ -438,24 +425,9 @@
     }
 
     async function sendFormData(data) {
-      /*
-        СЮДА ПОТОМ ВСТАВИШЬ РЕАЛЬНУЮ ОТПРАВКУ.
-
-        Пример:
-        return fetch('ТВОЙ_WEBHOOK_ИЛИ_API', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        });
-
-        Пока стоит заглушка.
-      */
-
       return new Promise((resolve) => {
         setTimeout(() => {
-          console.log('Отправленные данные:', data);
+          console.log('Wysłane dane:', data);
           resolve({ ok: true });
         }, 700);
       });
@@ -499,7 +471,7 @@
       }
 
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Отправка...';
+      submitBtn.textContent = 'Wysyłanie...';
 
       const data = collectFormData();
 
@@ -507,7 +479,7 @@
         const response = await sendFormData(data);
 
         if (!response.ok) {
-          throw new Error('Ошибка отправки');
+          throw new Error('Błąd wysyłki');
         }
 
         successBox.style.display = 'block';
@@ -519,7 +491,7 @@
         errorBox.style.display = 'block';
         updateSubmitState();
       } finally {
-        submitBtn.textContent = 'Отправить заявку';
+        submitBtn.textContent = 'Wyślij zgłoszenie';
       }
     });
 
