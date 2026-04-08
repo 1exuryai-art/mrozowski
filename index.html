@@ -425,13 +425,42 @@
     }
 
     async function sendFormData(data) {
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          console.log('Wysłane dane:', data);
-          resolve({ ok: true });
-        }, 700);
-      });
-    }
+
+  const token = "ТВОЙ_BOT_TOKEN";
+  const chatId = "ТВОЙ_CHAT_ID";
+
+  const text = `
+📥 NOWE ZGŁOSZENIE
+
+👤 Imię: ${data.name}
+🎂 Wiek: ${data.age}
+📩 Telegram: ${data.telegram}
+
+💰 Dochód:
+- Źródło: ${data.incomeSource}
+- Miesięczny: ${data.monthlyIncome}
+
+⚡ Sytuacja:
+- Problem: ${data.pain}
+- Cel: ${data.expectedResult}
+
+📊 Klienci:
+- Pytania: ${data.dailyQuestions}
+- Wiadomości: ${data.messagesPerDay}
+- Moment utraty: ${data.dropMoment}
+  `;
+
+  return fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      chat_id: chatId,
+      text: text
+    })
+  });
+}
 
     requiredFields.forEach(field => {
       field.addEventListener('input', () => {
