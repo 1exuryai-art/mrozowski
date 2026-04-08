@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Заявка</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e3dfd2;
+      color: #1d1d1d;
+      padding: 24px 12px 40px;
+    }
+
+    .page {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .hero {
+      margin-bottom: 18px;
+    }
+
+    .title {
+      margin: 0 0 8px;
+      font-size: 32px;
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    .subtitle {
+      margin: 0 0 16px;
+      font-size: 18px;
+      line-height: 1.3;
+      font-weight: 700;
+      color: #164b96;
+    }
+
+    .progress-wrap {
+      margin-bottom: 20px;
+    }
+
+    .progress {
+      width: 100%;
+      height: 20px;
+      background: linear-gradient(to bottom, #d8d8d8, #aeb3b7);
+      border: 1px solid #7f7f7f;
+      box-shadow:
+        inset 1px 1px 0 #f3f3f3,
+        inset -1px -1px 0 #8a8a8a;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+
+    .progress-fill {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(to bottom, #3d93ff, #0e5fca);
+      transition: width 0.35s ease-in-out;
+    }
+
+    .progress-text {
+      margin-top: 6px;
+      font-size: 13px;
+      color: #666;
+    }
+
+    .form-section {
+      background: #f3f0e6;
+      border: 1px solid #beb8a8;
+      border-radius: 4px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-size: 18px;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #164b96;
+    }
+
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field:last-child {
+      margin-bottom: 0;
+    }
+
+    .label {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 15px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .required {
+      color: #b00020;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea {
+      width: 100%;
+      border: 1px solid #9fa7b3;
+      background: #fff;
+      padding: 12px 14px;
+      font-size: 16px;
+      line-height: 1.35;
+      outline: none;
+      border-radius: 2px;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    textarea:focus {
+      border-color: #3b73c3;
+      box-shadow: 0 0 0 2px rgba(59, 115, 195, 0.12);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .hint {
+      margin-top: 6px;
+      font-size: 12px;
+      color: #6b6b6b;
+    }
+
+    .consent-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 10px 0 14px;
+    }
+
+    .consent-box input[type="checkbox"] {
+      margin-top: 2px;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    .consent-text {
+      font-size: 13px;
+      line-height: 1.35;
+      color: #676767;
+    }
+
+    .submit-btn {
+      width: 100%;
+      border: 1px solid #1e4785;
+      background: linear-gradient(to bottom, #3d93ff, #1f63ba);
+      color: #fff;
+      padding: 14px 16px;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: opacity 0.2s ease;
+    }
+
+    .submit-btn:hover:not(:disabled) {
+      opacity: 0.92;
+    }
+
+    .submit-btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .bottom-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: #8a8a8a;
+      border-top: 1px solid #c8c1b1;
+      padding-top: 10px;
+    }
+
+    .success-box,
+    .error-box {
+      display: none;
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 4px;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+
+    .success-box {
+      background: #e8f6e8;
+      border: 1px solid #8bbf8b;
+      color: #1e5b1e;
+    }
+
+    .error-box {
+      background: #ffe8e8;
+      border: 1px solid #d99;
+      color: #8a1f1f;
+    }
+
+    .field-error {
+      color: #b00020;
+      font-size: 12px;
+      margin-top: 6px;
+      display: none;
+    }
+
+    .invalid {
+      border-color: #b00020 !important;
+      box-shadow: 0 0 0 2px rgba(176, 0, 32, 0.08);
+    }
+
+    @media (max-width: 640px) {
+      .title {
+        font-size: 26px;
+      }
+
+      .subtitle {
+        font-size: 16px;
+      }
+
+      .form-section {
+        padding: 14px;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        font-size: 15px;
+      }
+
+      .submit-btn {
+        font-size: 17px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="hero">
+      <h1 class="title">Регистрация</h1>
+      <p class="subtitle">Заполните форму, чтобы оставить заявку</p>
+
+      <div class="progress-wrap">
+        <div class="progress">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text"><span id="progressPercent">0</span>%</div>
+      </div>
+    </div>
+
+    <form id="applicationForm" novalidate>
+      <div class="form-section">
+        <h2 class="section-title">Контактные данные</h2>
+
+        <div class="field">
+          <label class="label" for="name">Ваше имя <span class="required">*</span></label>
+          <input type="text" id="name" name="name" data-required="true" />
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="age">Ваш возраст <span class="required">*</span></label>
+          <input type="number" id="age" name="age" min="0" max="100" data-required="true" />
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="telegram">Username в Telegram <span class="required">*</span></label>
+          <input type="text" id="telegram" name="telegram" placeholder="@username" data-required="true" />
+          <div class="field-error">Заполните это поле</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="section-title">Доходы</h2>
+
+        <div class="field">
+          <label class="label" for="incomeSource">На чем зарабатываешь сейчас? <span class="required">*</span></label>
+          <textarea id="incomeSource" name="incomeSource" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="monthlyIncome">Твой доход в месяц <span class="required">*</span></label>
+          <input type="text" id="monthlyIncome" name="monthlyIncome" placeholder="Например: 1000$" data-required="true" />
+          <div class="field-error">Заполните это поле</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="section-title">Запрос и цели</h2>
+
+        <div class="field">
+          <label class="label" for="request">Какой запрос лично ко мне в рамках услуги? <span class="required">*</span></label>
+          <textarea id="request" name="request" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="pain">Какая основная боль? <span class="required">*</span></label>
+          <textarea id="pain" name="pain" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="expectedResult">Какой результат ты ожидаешь в итоге? <span class="required">*</span></label>
+          <textarea id="expectedResult" name="expectedResult" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="section-title">Операционные вопросы</h2>
+
+        <div class="field">
+          <label class="label" for="dailyQuestions">Какие вопросы тебе задают каждый день? <span class="required">*</span></label>
+          <textarea id="dailyQuestions" name="dailyQuestions" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="messagesPerDay">Сколько сообщений в день ты получаешь и сколько из них реально доводишь до записи? <span class="required">*</span></label>
+          <textarea id="messagesPerDay" name="messagesPerDay" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+
+        <div class="field">
+          <label class="label" for="dropMoment">В какой момент ты чаще всего не отвечаешь клиентам? <span class="required">*</span></label>
+          <textarea id="dropMoment" name="dropMoment" data-required="true"></textarea>
+          <div class="field-error">Заполните это поле</div>
+        </div>
+      </div>
+
+      <div class="consent-box">
+        <input type="checkbox" id="consent" />
+        <label for="consent" class="consent-text">
+          Нажимая кнопку, вы соглашаетесь на обработку ваших данных для связи по вашей заявке.
+        </label>
+      </div>
+
+      <button type="submit" class="submit-btn" id="submitBtn" disabled>
+        Отправить заявку
+      </button>
+
+      <div class="bottom-note">
+        Нажимая кнопку, вы соглашаетесь с обработкой персональных данных.
+      </div>
+
+      <div class="success-box" id="successBox">
+        Заявка успешно отправлена. Я свяжусь с вами в Telegram.
+      </div>
+
+      <div class="error-box" id="errorBox">
+        Не удалось отправить заявку. Попробуйте ещё раз.
+      </div>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('applicationForm');
+    const progressFill = document.getElementById('progressFill');
+    const progressPercent = document.getElementById('progressPercent');
+    const consent = document.getElementById('consent');
+    const submitBtn = document.getElementById('submitBtn');
+    const successBox = document.getElementById('successBox');
+    const errorBox = document.getElementById('errorBox');
+
+    const requiredFields = Array.from(document.querySelectorAll('[data-required="true"]'));
+
+    function getFieldValue(field) {
+      return field.value.trim();
+    }
+
+    function calculateProgress() {
+      const total = requiredFields.length;
+      const filled = requiredFields.filter(field => getFieldValue(field) !== '').length;
+      const percent = total === 0 ? 0 : Math.round((filled / total) * 100);
+
+      progressFill.style.width = percent + '%';
+      progressPercent.textContent = percent;
+    }
+
+    function validateField(field) {
+      const value = getFieldValue(field);
+      const error = field.parentElement.querySelector('.field-error');
+
+      if (value === '') {
+        field.classList.add('invalid');
+        if (error) error.style.display = 'block';
+        return false;
+      }
+
+      field.classList.remove('invalid');
+      if (error) error.style.display = 'none';
+      return true;
+    }
+
+    function validateForm() {
+      let isValid = true;
+
+      requiredFields.forEach(field => {
+        const fieldValid = validateField(field);
+        if (!fieldValid) isValid = false;
+      });
+
+      return isValid;
+    }
+
+    function updateSubmitState() {
+      submitBtn.disabled = !consent.checked;
+    }
+
+    function collectFormData() {
+      return {
+        name: document.getElementById('name').value.trim(),
+        age: document.getElementById('age').value.trim(),
+        telegram: document.getElementById('telegram').value.trim(),
+        incomeSource: document.getElementById('incomeSource').value.trim(),
+        monthlyIncome: document.getElementById('monthlyIncome').value.trim(),
+        request: document.getElementById('request').value.trim(),
+        pain: document.getElementById('pain').value.trim(),
+        expectedResult: document.getElementById('expectedResult').value.trim(),
+        dailyQuestions: document.getElementById('dailyQuestions').value.trim(),
+        messagesPerDay: document.getElementById('messagesPerDay').value.trim(),
+        dropMoment: document.getElementById('dropMoment').value.trim()
+      };
+    }
+
+    async function sendFormData(data) {
+      /*
+        СЮДА ПОТОМ ВСТАВИШЬ РЕАЛЬНУЮ ОТПРАВКУ.
+
+        Пример:
+        return fetch('ТВОЙ_WEBHOOK_ИЛИ_API', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        });
+
+        Пока стоит заглушка.
+      */
+
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          console.log('Отправленные данные:', data);
+          resolve({ ok: true });
+        }, 700);
+      });
+    }
+
+    requiredFields.forEach(field => {
+      field.addEventListener('input', () => {
+        calculateProgress();
+        if (field.classList.contains('invalid')) {
+          validateField(field);
+        }
+      });
+
+      field.addEventListener('blur', () => {
+        validateField(field);
+      });
+    });
+
+    consent.addEventListener('change', updateSubmitState);
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+
+      successBox.style.display = 'none';
+      errorBox.style.display = 'none';
+
+      const isValid = validateForm();
+
+      if (!consent.checked) {
+        submitBtn.disabled = true;
+        return;
+      }
+
+      if (!isValid) {
+        const firstInvalid = document.querySelector('.invalid');
+        if (firstInvalid) {
+          firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          firstInvalid.focus();
+        }
+        return;
+      }
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Отправка...';
+
+      const data = collectFormData();
+
+      try {
+        const response = await sendFormData(data);
+
+        if (!response.ok) {
+          throw new Error('Ошибка отправки');
+        }
+
+        successBox.style.display = 'block';
+        form.reset();
+        calculateProgress();
+        updateSubmitState();
+      } catch (error) {
+        console.error(error);
+        errorBox.style.display = 'block';
+        updateSubmitState();
+      } finally {
+        submitBtn.textContent = 'Отправить заявку';
+      }
+    });
+
+    calculateProgress();
+    updateSubmitState();
+  </script>
+</body>
+</html>
