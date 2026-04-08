@@ -424,43 +424,17 @@
       };
     }
 
-    async function sendFormData(data) {
+   async function sendFormData(data) {
+  const webhookUrl = "https://script.google.com/macros/s/AKfycbyuc33thnvL5JDLL7xvdrkGibDrfRYOC3sRPhU9BsOs9I-tHbHRfCIb4Zib262fh3_eYA/exec";
 
-  const token = "8087697043:AAFxZxS1-ex0gVPAJlsVLIHxpR66b4JQEl0";
-  const chatId = "7627635699";
-
-  const text = `
-📥 NOWE ZGŁOSZENIE
-
-👤 Imię: ${data.name}
-🎂 Wiek: ${data.age}
-📩 Telegram: ${data.telegram}
-
-💰 Dochód:
-- Źródło: ${data.incomeSource}
-- Miesięczny: ${data.monthlyIncome}
-
-⚡ Sytuacja:
-- Problem: ${data.pain}
-- Cel: ${data.expectedResult}
-
-📊 Klienci:
-- Pytania: ${data.dailyQuestions}
-- Wiadomości: ${data.messagesPerDay}
-- Moment utraty: ${data.dropMoment}
-  `;
-
-  return fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+  return fetch(webhookUrl, {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "text/plain;charset=utf-8"
     },
-    body: JSON.stringify({
-      chat_id: chatId,
-      text: text
-    })
+    body: JSON.stringify(data)
   });
-}       
+}
     requiredFields.forEach(field => {
       field.addEventListener('input', () => {
         calculateProgress();
